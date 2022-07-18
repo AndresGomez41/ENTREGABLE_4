@@ -1,0 +1,92 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body{
+  background: #ebebeb;
+}
+.App {
+  font-family: 'Raleway', sans-serif;
+  padding: .5rem;
+  background: #ebebeb;
+  display: flex;
+  gap:1rem;
+  justify-content: center;
+  border: 1px solid red;
+  margin: 0 auto;
+}
+form{
+  width: 400px;
+  min-width: 320px;
+  height: fit-content;
+  border: 1px black solid;
+  display: block;
+  text-align: justify;
+  padding: .9rem;
+  margin: 0 auto;
+  background-color: azure;
+}
+form label, button{
+  display: block;
+  width: 100%;
+  margin: .8rem auto;  
+}
+input{
+  width: 100%;
+  font-size: 1rem;
+  font-family: 'Raleway', sans-serif;
+  padding: 0.3rem 0 0.3rem 1.5rem;  
+}
+button{
+  height: 40px;
+  text-align: center;
+  background: #a435f0;
+  color: aliceblue;
+  font-weight: bold;
+  border: none;
+}
+button:hover{
+  background: #7627aa;
+}
+ul{
+  list-style: none;
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+}
+li{
+  width: 100%;
+  height: fit-content;
+  border: 1px solid whitesmoke;
+  background: aliceblue;
+  margin: 1rem auto;
+  border-radius: 8px;
+  padding: 10px;  
+  flex-grow: 3;
+  
+}
+li button{
+  width: 70px;
+  height: 30px;
+}
+.btn-list-box{
+  width: 300px;
+  display: flex;
+  /* justify-content: flex-start;
+  align-items: center; */
+}
+
+@media (max-width:730px)  {
+  .App{
+    flex-direction: column;
+  } 
+}
+@media (min-width:1070px){
+  .App{
+    width:1000px;
+  }
+}
