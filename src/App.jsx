@@ -47,9 +47,6 @@ function App() {
     setModal(true)
   }
 
-  console.log(users)
-  console.log('user selected',userSelected)
-
   return (
     <div className="App">
       <UsersForm 
