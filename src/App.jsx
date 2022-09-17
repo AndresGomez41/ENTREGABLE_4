@@ -8,10 +8,11 @@ function App() {
 
   const [ users, setUsers ] = useState([])
   const [ userSelected, setUserSelected] = useState(null)
+  const [ modal , setModal ] = useState(false)
+  const [ action, setAction] = useState("")
 
   useEffect( () => {
-      axios.get(`https://users-crud1.herokuapp.com/users/`)
-          .then(res => setUsers(res.data))
+      getUsers()
   },[])
 
   const getUsers = () => {
@@ -19,9 +20,16 @@ function App() {
     .then(res => setUsers(res.data))
   }
 
+  const deleteUser = id => {      
+    axios.delete(`https://users-crud1.herokuapp.com/users/${id}/`)
+        .then( () => {
+          getUsers() 
+          openModal('deleted')
+        })
+        .catch( e => console.error(e.response))        
+  }
+
   const getUserSelected = id => {
-    console.log('user id en funcion get user', id)
-    alert('updating user')
     axios.get(`https://users-crud1.herokuapp.com/users/${id}/`)
     .then(res => setUserSelected(res.data))
   }
@@ -30,16 +38,40 @@ function App() {
     setUserSelected(null)
   }
 
+  const closeModal = () => {
+    setModal(false)
+  }
 
-
+  const openModal = (action) => {
+    setAction(`user successfully ${action}`)
+    setModal(true)
+  }
 
   console.log(users)
   console.log('user selected',userSelected)
 
   return (
     <div className="App">
-      <UsersForm getUsers={getUsers} userSelected={userSelected} resetUserSelected={resetUserSelected}/>
-      <UsersList users={users} getUsers={getUsers} getUserSelected={getUserSelected}/>
+      <UsersForm 
+        getUsers={getUsers} 
+        userSelected={userSelected} 
+        resetUserSelected={resetUserSelected}
+        closeModal={closeModal}
+        openModal={openModal}
+        modal={modal}
+      />
+      <UsersList 
+        users={users} 
+        deleteUser={deleteUser}
+        getUserSelected={getUserSelected} 
+       />
+       
+      <div className={`modal ${modal ? "show" : "hidden"}`} onClick={closeModal}>
+        <div className="modal-content">
+          <p>{action}</p>
+          <i class="fa-solid fa-check"></i>
+        </div>
+      </div>
     </div>
   )
 }

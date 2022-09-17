@@ -6,28 +6,31 @@
   margin: 0;
   padding: 0;
 }
+:root{
+  --btn-bg:#157f18;
+  --btn-hover:#0c5513;
+}
 body{
-  background: #ebebeb;
+  background-image: url(.\assets\blue_grunge_pattern_background.jpg);
+  background-position: center;
+  background-size: contain;
 }
 .App {
+  width: 100vw;
+  height: 100vh;
   font-family: 'Raleway', sans-serif;
   padding: .5rem;
-  background: #ebebeb;
-  display: flex;
-  gap:1rem;
-  justify-content: center;
-  border: 1px solid red;
-  margin: 0 auto;
+  margin: 0 auto;  
 }
 form{
-  width: 400px;
+  width: 280px;
   min-width: 320px;
   height: fit-content;
   border: 1px black solid;
   display: block;
   text-align: justify;
   padding: .9rem;
-  margin: 0 auto;
+  margin: 0.5rem auto;
   background-color: azure;
 }
 form label, button{
@@ -44,17 +47,19 @@ input{
 button{
   height: 40px;
   text-align: center;
-  background: #a435f0;
+  background: var(--btn-bg);
   color: aliceblue;
   font-weight: bold;
   border: none;
+  border-radius: 5px;
 }
 button:hover{
-  background: #7627aa;
+  background: var(--btn-hover);
 }
 ul{
   list-style: none;
   display: flex;
+  flex-direction: column;
   gap: .5rem;
   flex-wrap: wrap;
 }
@@ -63,30 +68,75 @@ li{
   height: fit-content;
   border: 1px solid whitesmoke;
   background: aliceblue;
-  margin: 1rem auto;
   border-radius: 8px;
   padding: 10px;  
-  flex-grow: 3;
-  
+  display: flex;
+  justify-content: space-between;
 }
 li button{
-  width: 70px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
 }
 .btn-list-box{
-  width: 300px;
+  width: 100px;
   display: flex;
-  /* justify-content: flex-start;
-  align-items: center; */
 }
-
-@media (max-width:730px)  {
+.modal.show{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.5);
+  z-index: 1;
+  display: block;
+}
+.modal.hidden{
+  display: none;
+}
+.modal-content{
+  width: 250px;
+  height: 100px;
+  border-radius: 10px;
+  z-index: 2;
+  background: rgb(215, 210, 210);
+  margin: 20% auto;
+  box-shadow: 0 5px 8px 0 rgba(0,0,0,.2), 0 7px 20px 0 rgba(0,0,0,.2)
+ }
+.modal-content p{
+  text-align: center;
+  padding-top: 30px;
+  margin-top: 50%;
+}
+.modal-content i{
+  display: block;
+  text-align: center;
+  padding-top: 7px ;
+  background: greenyellow;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin: 0.5rem auto;
+}
+.modal-content i:hover{
+  background: rgb(134, 221, 4);
+}
+@media (min-width:630px)  {
   .App{
-    flex-direction: column;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 1rem;
   } 
+  ul{
+    margin-top: .5rem;
+    flex:auto;
+  }
 }
 @media (min-width:1070px){
   .App{
+    
     width:1000px;
   }
 }
